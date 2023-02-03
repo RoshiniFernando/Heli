@@ -24,10 +24,33 @@ right: 2rem;
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # Sidebar 
-st.sidebar.header("About")
+
 API_KEY = st.sidebar.text_input(
             "Enter your OpenAI API key",
             type='password')
+
+
+st.sidebar.header("About")
+st.sidebar.markdown(
+    """
+App created by [roshinifer333](https://twitter.com/roshinifer333) using [Streamlit](https://streamlit.io/) 🎈, 
+ [streamlit-chat](https://pypi.org/project/streamlit-chat/) and [OpenAI API](https://openai.com/api/)'s 
+the most capable GPT-3 model [text-davinci-003](https://platform.openai.com/docs/models/overview) for educational purposes. 
+"""
+)
+
+st.sidebar.markdown(
+    "[Streamlit](https://streamlit.io) is a Python library that allows the creation of interactive, data-driven web applications in Python."
+)
+
+st.sidebar.header("Additional Resources")
+st.sidebar.markdown(
+    """
+- [My Github Repo](https://github.com/RoshiniFernando/Heli)
+- [Tutorial I followed](https://dragonforest.in/chat-gpt-3-web-app-with-streamlit/)
+
+"""
+)
 
 # Pass API Key
 openai.api_key = API_KEY
@@ -71,4 +94,6 @@ if st.session_state['generated']:
     for i in range(len(st.session_state['generated'])-1, -1, -1):
         message(st.session_state["generated"][i], key=str(i))
         message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+
+    
 

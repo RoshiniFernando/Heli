@@ -35,7 +35,7 @@ st.sidebar.markdown(
     """
 App created by [roshinifer333](https://twitter.com/roshinifer333) using [Streamlit](https://streamlit.io/) 🎈, 
  [streamlit-chat](https://pypi.org/project/streamlit-chat/) and [OpenAI API](https://openai.com/api/)'s 
-the most capable GPT-3 model [text-davinci-003](https://platform.openai.com/docs/models/overview) for educational purposes. 
+the most capable GPT-3.5 model [gpt-3.5-turbo](https://platform.openai.com/docs/models/overview) for educational purposes. 
 """
 )
 
@@ -58,7 +58,7 @@ openai.api_key = API_KEY
 # Create function to use OpenAI text-davinci-003 model
 def generate_response(prompt):
     completion=openai.Completion.create(
-        engine='text-davinci-003',
+        engine='gpt-3.5-turbo',
         prompt=prompt,
         max_tokens=1024,
         n=1,

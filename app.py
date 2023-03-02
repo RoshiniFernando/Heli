@@ -52,22 +52,39 @@ st.sidebar.markdown(
 """
 )
 
+st.sidebar.header("Change Log")
+st.sidebar.markdown(
+    """
+- Current Heli 2.0 powered by OpenAI (ChatGPT) gpt-3.5-turbo model
+- Heli 1.0 powered by OpenAI text-davinci-003 model
+
+"""
+)
+
 # Pass API Key
 openai.api_key = API_KEY
 
-# Create function to use OpenAI text-davinci-003 model
+# Create function to use OpenAI gpt-3.5-turbo model
 def generate_response(prompt):
-    completion=openai.Completion.create(
-        engine='gpt-3.5-turbo',
-        prompt=prompt,
-        max_tokens=1024,
-        n=1,
-        stop=None,
-        temperature=0.8,
+    # completion=openai.Completion.create(
+    #     engine='gpt-3.5-turbo',
+    #     prompt=prompt,
+    #     max_tokens=1024,
+    #     n=1,
+    #     stop=None,
+    #     temperature=0.8,
+    # )
+
+    completion = openai.ChatCompletion.create(
+        model = "gpt-3.5-turbo",
+        messages=[
+        {"role": "user", "content": prompt}
+    ]
     )
 
-    message=completion.choices[0].text
-    return message
+    messages=completion['choices'][0]['message']['content']
+    print(messages)
+    return messages
 
 st.header(" 🤖 Heli - Your Everlasting Companion")
 
